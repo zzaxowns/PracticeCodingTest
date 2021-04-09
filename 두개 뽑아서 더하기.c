@@ -31,11 +31,11 @@ void bubble_Sort(int* answer, int answer_len) { // 버블 정렬
 int* solution(int numbers[], size_t numbers_len) {
 	// return 값은 malloc 등 동적 할당을 사용해주세요. 할당 길이는 상황에 맞게 변경해주세요.
 	int* answer = (int*)malloc(sizeof(int));
-	int answer_len = 0;
+	int answer_len = 0; // 현재 배열의 길이
 
 	for (int i = 0; i < numbers_len; i++) {
 		for (int j = i + 1; j < numbers_len; j++) {
-			if (!deplicate_Check(answer, answer_len, numbers[i] + numbers[j])) { //중복체크
+			if (!deplicate_Check(answer, answer_len, numbers[i] + numbers[j])) {
 				answer[answer_len] = numbers[i] + numbers[j];
 				answer_len++;
 			}

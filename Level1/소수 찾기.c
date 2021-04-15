@@ -28,6 +28,35 @@
 //	return answer;
 //} // 효율성이랑 자리 수가 긴 소수는 안됨.
 
+//#include <string>
+//#include <vector>
+//#include <cmath>
+//
+//using namespace std;
+//
+//int solution(int n) {
+//	int answer = 0;
+//	bool isbreak = false;
+//
+//	for (int i = 2; i <= n; i++) {
+//		isbreak = false;
+//
+//		for (int j = 2; j <= sqrt(i); j++) {
+//			if (i%j == 0) { //나눠진다.
+//				isbreak = true;
+//				break;
+//			}
+//		}
+//
+//		if (!isbreak) {
+//			answer++;
+//		}
+//
+//	}
+//
+//	return answer;
+//} // 자리가 긴 소수 까지 가능한데 효율성 부분에서 떨어짐
+
 #include <string>
 #include <vector>
 #include <cmath>
@@ -36,23 +65,17 @@ using namespace std;
 
 int solution(int n) {
 	int answer = 0;
-	bool isbreak = false;
+	bool check_arr[1000000] = { 0, };
 
 	for (int i = 2; i <= n; i++) {
-		isbreak = false;
+		if (check_arr[i] == 0) {
+			answer++;
 
-		for (int j = 2; j <= sqrt(i); j++) {
-			if (i%j == 0) { //나눠진다.
-				isbreak = true;
-				break;
+			for (int j = 1; i*j <= n; j++) {
+				check_arr[i*j] = 1;
 			}
 		}
-
-		if (!isbreak) {
-			answer++;
-		}
-
 	}
 
 	return answer;
-} // 자리가 긴 소수 까지 가능한데 효율성 부분에서 떨어짐
+}// 에라토스테네스의 체 

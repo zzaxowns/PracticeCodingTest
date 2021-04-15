@@ -13,10 +13,8 @@ vector<int> solution(vector<int> array, vector<vector<int>> commands) {
 
 	for (int i = 0; i < len; i++) {
 		first = commands[i][0] - 1;
-		last = commands[i][1] - 1;
+		last = commands[i][1];
 		find = commands[i][2] - 1;
-
-		printf("%d", first);
 
 		for (int j = first; j < last; j++) {
 			temp.push_back(array[j]);
@@ -25,7 +23,6 @@ vector<int> solution(vector<int> array, vector<vector<int>> commands) {
 		sort(temp.begin(), temp.end());
 
 		answer.push_back(temp[find]);
-
 
 		temp.clear();
 	}

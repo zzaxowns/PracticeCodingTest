@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+
 using namespace std;
 
 vector<int> solution(vector<int> array, vector<vector<int>> commands) {
@@ -11,15 +12,23 @@ vector<int> solution(vector<int> array, vector<vector<int>> commands) {
 	int first, last, find = 0;
 
 	for (int i = 0; i < len; i++) {
-		first = commands[i][0];
-		last = commands[i][1];
-		find = commands[i][2];
+		first = commands[i][0] - 1;
+		last = commands[i][1] - 1;
+		find = commands[i][2] - 1;
 
-		copy(array.begin() + first, array.begin() + last, temp);
+		printf("%d", first);
+
+		for (int j = first; j < last; j++) {
+			temp.push_back(array[j]);
+		}
+
 		sort(temp.begin(), temp.end());
 
-	}
+		answer.push_back(temp[find]);
 
+
+		temp.clear();
+	}
 
 	return answer;
 }

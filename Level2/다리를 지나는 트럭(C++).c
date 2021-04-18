@@ -20,17 +20,20 @@ int solution(int bridge_length, int weight, vector<int> truck_weights) {
 
 		if ((current_weight + wait.top() < weight) // 새로운 트럭이 들어갈 수 있을 때
 			|| buffer.size() < bridge_length) {
-			current_weight += wait.top();;
+			current_weight += wait.top();
 			buffer.push(wait.top());
 
 			wait.pop();
 		}
 		else { // 새로운 트럭이 들어갈 수 없을 때 0을 추가해서 큐를 밀어준다.
-			if (!wait()) {
+			if (current_weight != 0) {
 				buffer.push(0);
 
-				if (buffer.size() > bridge_length)// 앞에 트럭이 밀려서 지나감
+				if (buffer.size() > bridge_length) {// 앞에 트럭이 밀려서 지나감
+					int temp = buffer.front();
+					current_weight -= temp;
 					buffer.pop();
+				}
 			}
 		}
 

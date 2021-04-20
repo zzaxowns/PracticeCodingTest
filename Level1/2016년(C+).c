@@ -11,22 +11,22 @@ string check_Day(int num) {
 		day = "SAT";
 		break;
 	case 1:
-		day = "SUN";
-		break;
-	case 2:
-		day = "MON";
-		break;
-	case 3:
-		day = "TUE";
-		break;
-	case 4:
-		day = "WED";
-		break;
-	case 5:
 		day = "THU";
 		break;
+	case 2:
+		day = "SAT";
+		break;
+	case 3:
+		day = "SUN";
+		break;
+	case 4:
+		day = "MON";
+		break;
+	case 5:
+		day = "TUE";
+		break;
 	case 6:
-		day = "FRI";
+		day = "WED";
 		break;
 	}
 
@@ -43,8 +43,6 @@ string solution(int a, int b) {
 	}
 
 	answer = check_Day(temp % 7);
-
-	printf("%d", temp);
 
 	return answer;
 }

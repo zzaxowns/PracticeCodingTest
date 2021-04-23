@@ -5,9 +5,6 @@ using namespace std;
 
 int check_num(int num) {
 	if (num == 0) {
-		return  1;
-	}
-	else if (num == 3) {
 		return 4;
 	}
 
@@ -18,11 +15,11 @@ string solution(int n) {
 	string answer = "";
 
 	while (n > 0) {
-		int num = check_num(n % 4);
+		int num = check_num(n % 3);
 
 		answer = to_string(num) + answer;
 
-		n /= 4;
+		n /= 3;
 	}
 
 	return answer;

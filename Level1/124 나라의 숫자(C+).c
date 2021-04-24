@@ -14,7 +14,7 @@ int check_num(int num) {
 string solution(int n) {
 	string answer = "";
 
-	while (n > 3) {
+	while (n > 0) {
 		int num = check_num(n % 3);
 		answer = to_string(num) + answer;
 

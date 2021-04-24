@@ -21,8 +21,5 @@ string solution(int n) {
 		n /= 3;
 	}
 
-	int num = check_num(n % 3);
-	answer = to_string(num) + answer;
-
 	return answer;
 }

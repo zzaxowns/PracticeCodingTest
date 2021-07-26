@@ -6,19 +6,18 @@
 using namespace std;
 
 bool solution(vector<string> phone_book) {
-
-	int len = phone_book.size();
+	bool answer = true;
 
 	sort(phone_book.begin(), phone_book.end());
 
-	for (int i = 0; i < len - 1; i++) {
-		int shorter_Len = phone_book[i].size();
-
+	int len = phone_book.size();
+	for (int i = 0; i < len; i++) {
 		for (int j = i + 1; j < len; j++) {
-			if (strncmp(phone_book[i], phone_book[j], shorter_Len)) {
+			if (strncmp(phone_book[i].c_str(), phone_book[j].c_str(), phone_book[i].length()) == 0) {
 				return false;
 			}
 		}
 	}
-	return true;
+
+	return answer;
 }

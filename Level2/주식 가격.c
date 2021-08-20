@@ -10,7 +10,7 @@ vector<int> solution(vector<int> prices) {
 	for (int i = 0; i < len; i++) {
 		int count = 1;
 		int temp = prices[i];
-		for (int j = i + 1; j < len; j++) {
+		for (int j = i + 1; j < len-1; j++) {
 			if (temp < prices[j]) {
 				count++;
 				temp = prices[j];
@@ -27,4 +27,4 @@ vector<int> solution(vector<int> prices) {
 
 	return answer;
 }
-//문제가 너무 애매해서 우선 보류
+//문제가 너무 애매

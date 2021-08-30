@@ -3,6 +3,14 @@
 
 using namespace std;
 
+void DFS(vector<vector<int>> graph, vector<bool> check, int start_Node) {
+
+}
+
+void BFS(vector<vector<int>> graph, vector<bool> check, int start_Node) {
+
+}
+
 int main() {
 	int N = 0;
 	int M = 0;
@@ -17,6 +25,7 @@ int main() {
 	cin >> V;
 	if (V<0 || V>N) { return 0; }
 
+	vector <bool> check_Graph(N, false);
 	vector<vector<int>> g(N, vector<int>(N, 0));
 
 	for (int i = 0; i < M; i++) {
@@ -32,7 +41,11 @@ int main() {
 		g[node2 - 1][node1 - 1] = 1;
 	}
 
+	DFS(g, check_Graph, V);
 
+	BFS(g, check_Graph, V);
+
+	//print 출력 부분
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < N; j++) {
 			cout << " " << g[i][j];

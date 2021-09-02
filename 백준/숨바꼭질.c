@@ -1,40 +1,52 @@
 #include<iostream>
-#include<stack>
 #include<queue>
+#include<algorithm>
+#include<utility>
 
 using namespace std;
 
 #define MAX 100001
 
-int DFS(vector<bool> check_Arr, int N, int V) {
-	stack<int> s;
-	int count = 1;
+bool Isvaild(int num) {
+	bool temp = num <= 100000 && num > 0 ? true : false;
 
-	s.push(N);
+	temp = temp || num
+
+		return
+}
+
+int Search(vector<bool> check_Arr, int N, int V) {
+	queue<pair<int, int>> q;
+	q.push({ N,0 });
 	check_Arr[N] = true;
 
-	while (!s.empty()) {
-		int current = s.top();
+	while (!q.empty()) {
+		pair<int, int> temp = q.front();
 
-		if (!check_Arr[N - 1]) {
-			s.push(N - 1);
-			check_Arr[N - 1] = true;
+		if (temp.first == N) { // 현재 맨 앞에 있는게 정답
+			return temp.second;
 		}
-		else if (!check_Arr[N * 2]) {
-			s.push(N * 2);
-			check_Arr[N * 2] = true;
+
+		if (Isvaild(temp.first - 1)) {
+			q.push({ temp.first - 1, temp.second + 1 });
+			check_Arr[temp.first - 1] = true;
 		}
-		else if (!check_Arr[N + 1]) {
-			s.push(N + 1);
-			check_Arr[N + 1] = true;
+
+		if (Isvaild(temp.first + 1)) {
+			q.push({ temp.first + 1, temp.second + 1 });
+			check_Arr[temp.first + 1] = true;
 		}
-		else
+
+		if (Isvaild(temp.first * 2)) {
+			q.push({ temp.first * 2, temp.second + 1 });
+			check_Arr[temp.first * 2] = true;
+		}
+
 	}
 
+	return
 }
 
-int BFS() {
-}
 
 int main() {
 	int N = 0;
@@ -51,5 +63,3 @@ int main() {
 
 	return 0;
 }
-
-// q로 pair를 만들어서 써보자

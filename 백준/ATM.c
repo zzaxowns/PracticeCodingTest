@@ -6,14 +6,16 @@ using namespace std;
 
 int greedy(vector<int> people) {
 	int sum = 0;
+	int total = 0;
 
 	sort(people.begin(), people.end());
 
 	for (auto num : people) {
 		sum = sum + num;
+		total += sum;
 	}
 
-	return sum;
+	return total;
 }
 
 int main() {
@@ -35,7 +37,7 @@ int main() {
 		people.push_back(temp);
 	}
 
-	cout << "총 걸리는 시간: " << greedy(people) << "초" << endl;
+	cout << "총 걸리는 시간: [" << greedy(people) << "] 초" << endl;
 
 	return 0;
 }

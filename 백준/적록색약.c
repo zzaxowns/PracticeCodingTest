@@ -1,69 +1,79 @@
 #include<iostream>
 #include<queue>
-#include<algorithm>
-#include<utility>
+#define MAX  5
 
 using namespace std;
 
-#define MAX 100001
+int dx[4] = { 0,0,-1,1 };
+int dy[4] = { -1,1,0,0 };
 
-bool Isvaild(int num, const vector<bool> check) {
-	if (num <= 100000 && num > 0 && !check[num])
-		return true;
-	else
-		return false;
-}
+char paint[5][5] = { {'R','R','R','B','B'},
+					 {'G','G','B','B','B'},
+					 {'B','B','B','R','R'},
+					 {'B','B','R','R','R'},
+					 {'R','R','R','R','R'} };
 
-int Search(vector<bool> check_Arr, int N, int K) {
-	queue<pair<int, int>> q;
-	int answer = -1;
+bool check[5][5] = { 0, };
 
-	q.push({ N,0 });
-	check_Arr[N] = true;
+void dfs(int x, int y) {
+	check[x][y] = true;
 
+	for (int i = 0; i < 4; i++) {
+		int temp_x = x + dx[i];
+		int temp_y = y + dy[i];
 
-	while (!q.empty()) {
-		pair<int, int> temp = q.front();
+		if (temp_x < 0 || temp_x >= MAX || temp_y < 0 || temp_y >= MAX) { continue; }
 
-		if (temp.first == K) { // 현재 맨 앞에 있는게 정답
-			answer = temp.second;
-			break;
+		if (!check[temp_x][temp_y] && paint[x][y] == paint[temp_x][temp_y]) {
+			dfs(temp_x, temp_y);
 		}
-
-		if (Isvaild(temp.first - 1, check_Arr)) {
-			q.push({ temp.first - 1, temp.second + 1 });
-			check_Arr[temp.first - 1] = true;
-		}
-
-		if (Isvaild(temp.first + 1, check_Arr)) {
-			q.push({ temp.first + 1, temp.second + 1 });
-			check_Arr[temp.first + 1] = true;
-		}
-
-		if (Isvaild(temp.first * 2, check_Arr)) {
-			q.push({ temp.first * 2, temp.second + 1 });
-			check_Arr[temp.first * 2] = true;
-		}
-
-		q.pop();
 	}
-
-	return answer;
 }
 
+void change_Paint() {
+	for (int i = 0; i < MAX; i++) {
+		for (int j = 0; j < MAX; j++) {
+			if (paint[i][j] == 'G') { paint[i][j] = 'R'; }
+		}
+	}
+}
+
+void check_Reset() {
+	for (int i = 0; i < MAX; i++) {
+		for (int j = 0; j < MAX; j++) {
+			check[i][j] = false;
+		}
+	}
+}
 
 int main() {
-	int N = 0;
-	int K = 0;
-	vector<bool> check_Arr(MAX, false);
+	int count = 0;
 
-	cout << "수빈이의 위치 >>> ";
-	cin >> N;
+	for (int i = 0; i < MAX; i++) {
+		for (int j = 0; j < MAX; j++) {
+			if (!check[i][j]) {
+				dfs(i, j);
+				count++;
+			}
+		}
+	}
 
-	cout << "동생의 위치 >>> ";
-	cin >> K;
+	cout << "일반인이 봤을 경우 정답: " << count << endl;
 
-	cout << Search(check_Arr, N, K) << endl;
+	change_Paint();
+	check_Reset();
+	count = 0;
+
+	for (int i = 0; i < MAX; i++) {
+		for (int j = 0; j < MAX; j++) {
+			if (!check[i][j]) {
+				dfs(i, j);
+				count++;
+			}
+		}
+	}
+
+	cout << "적록색약을 갖고 있는 사람이 봤을 경우 정답: " << count << endl;
 
 	return 0;
 }

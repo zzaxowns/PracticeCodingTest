@@ -1,42 +1,43 @@
-//#include <string>
-//#include <vector>
-//#include <algorithm>
-//#include <cstring>
-//
-//using namespace std;
-//
-//bool solution(vector<string> phone_book) {
-//	bool answer = true;
-//
-//	sort(phone_book.begin(), phone_book.end());
-//
-//	int len = phone_book.size();
-//	for (int i = 0; i < len; i++) {
-//		for (int j = i + 1; j < len; j++) {
-//			if (strncmp(phone_book[i].c_str(), phone_book[j].c_str(), phone_book[i].length()) == 0) {
-//				return false;
-//			}
-//		}
-//	}
-//
-//	return answer;
-//}
-
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <deque>
 
 using namespace std;
 
-bool solution(vector<string> phone_book) {
-	bool answer = true;
+int solution(vector<int> people, int limit) {
+	int answer = 0;
+	deque<int> deq;
 
-	sort(phone_book.begin(), phone_book.end());
+	sort(people.begin(), people.end());
 
-	int len = phone_book.size();
-	for (int i = 0; i < len - 1; i++) {
-		if (phone_book[i] == phone_book[i + 1].substr(0, phone_book[i].size())) {
-			return false;
+	for (auto num : people) {
+		deq.push_back(num);
+	}
+
+	while (true) {
+
+		if (deq.size() == 0) {
+			break;
+		}
+		else if (deq.size() == 1) {
+			answer++;
+			break;
+		}
+		else {
+			int boat = deq.back();
+
+			bool check = boat + deq.front() > limit ? false : true;
+
+			if (check) {
+				deq.pop_front();
+				deq.pop_back();
+				answer++;
+			}
+			else {
+				deq.pop_back();
+				answer++;
+			}
 		}
 	}
 

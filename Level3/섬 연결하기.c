@@ -10,23 +10,21 @@ int solution(int n, vector<vector<int>> costs) {
 	vector<bool> check(n, false);
 
 	for (int j = 0; j < n - 1; j++) {
-		int min_weight = 0;
+		int min = 0;
 
-		for (int i = 0; i < n; i++) {
-			if ((!check[costs[i][0]] && check[costs[i][1]])
-				&& costs[i][2] < costs[min_weight][2]) {
-				min_weight = i;
+		for (int i = 0; i < costs.size(); i++) {
+			bool temp = check[costs[i][0]] && check[costs[i][1]] ? false : true;
 
+			if (temp && (costs[i][2] <= costs[min][2])) {
+				min = i;
 			}
 		}
 
-		for (auto ch : check) {
-			cout << ch << " ";
-		}
-		cout << endl;
-		answer += costs[min_weight][2];
-		check[costs[min_weight][0]] = true;
-		check[costs[min_weight][1]] = true;
+
+		answer += costs[min][2];
+		costs[min][2] = 9999;
+		check[costs[min][0]] = true;
+		check[costs[min][1]] = true;
 	}
 
 	return answer;

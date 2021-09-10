@@ -2,6 +2,8 @@
 #include <vector>
 #include <iostream>
 
+#define MAX 99999
+
 using namespace std;
 
 int solution(int n, vector<vector<int>> costs) {
@@ -13,18 +15,17 @@ int solution(int n, vector<vector<int>> costs) {
 		int min = 0;
 
 		for (int i = 0; i < costs.size(); i++) {
-			bool temp = check[costs[i][0]] && check[costs[i][1]] ? false : true;
+			bool temp = check[costs[i][0]] && check[costs[i][1]] ? true : false;
 
-			if (temp && (costs[i][2] <= costs[min][2])) {
+			if (!temp && (costs[i][2] < costs[min][2])) {
 				min = i;
 			}
 		}
 
-
 		answer += costs[min][2];
-		costs[min][2] = 9999;
 		check[costs[min][0]] = true;
 		check[costs[min][1]] = true;
+		costs[min][2] = MAX;
 	}
 
 	return answer;

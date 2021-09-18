@@ -16,7 +16,6 @@ long long solution(int w, int h) {
 		small = mod;
 	}
 
-	answer = w * h - small * small;
-
+	answer = (long long)w*h - small * (h / small + w / small - 1);
 	return answer;
 }

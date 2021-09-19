@@ -6,7 +6,7 @@ using namespace std;
 
 int solution(vector<vector<int>> board)
 {
-	int answer = 0;
+	int answer = board[0][0];
 	int height = board.size();
 	int width = board[0].size();
 

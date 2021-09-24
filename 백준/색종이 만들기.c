@@ -25,8 +25,8 @@ void Divide(int x, int y, int size) {
 		}
 	}
 
-	if (isWhite)White++;
-	else if (!isWhite) Blue++;
+	if (isWhite) { White++; return; }
+	else if (!isWhite) { Blue++; return; }
 
 	Divide(x, y, size / 2);
 	Divide(x, y + size, size / 2);
@@ -38,11 +38,12 @@ int main() {
 
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
-
+	cout.tie(NULL);
 
 	GetMap();
 	Divide(0, 0, Size);
 
+	cout << White << endl << Blue;
 
 	return 0;
 }

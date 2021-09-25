@@ -18,24 +18,23 @@ void GetMap() {
 }
 void Divide(int x, int y, int size) {
 
-	bool isSame = Map[x][y];
-	bool isBlue = true;
+	int check = Map[x][y];
+
 	for (int i = x; i < x + size; i++) {
 		for (int j = y; j < y + size; j++) {
-			if (isSame != Map[i][j])
-				isSame = false;
-
-			isBlue = Map[i][j];
+			if (check != Map[i][j]) {
+				Divide(x, y, size / 2);
+				Divide(x, y + size, size / 2);
+				Divide(x + size, y, size / 2);
+				Divide(x + size, y + size, size / 2);
+			}
 		}
 	}
 
-	if (isSame && isBlue) {Blue++; return;}
-	if (isSame && !isBlue) { White++; return; }
-
-	Divide(x, y, size / 2);
-	Divide(x, y + size, size / 2);
-	Divide(x + size, y, size / 2);
-	Divide(x + size, y + size, size / 2);
+	if (check == 0)
+		White++;
+	else
+		Blue++;
 }
 
 int main() {

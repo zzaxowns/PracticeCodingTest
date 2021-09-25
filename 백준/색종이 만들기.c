@@ -29,10 +29,8 @@ void Divide(int x, int y, int size) {
 		}
 	}
 
-	if (isSame) {
-		if (isBlue) { Blue++; return; }
-		else if (!isBlue) { White++; return; }
-	}
+	if (isSame && isBlue) {Blue++; return;}
+	if (isSame && !isBlue) { White++; return; }
 
 	Divide(x, y, size / 2);
 	Divide(x, y + size, size / 2);

@@ -18,18 +18,22 @@ void GetMap() {
 }
 void Divide(int x, int y, int size) {
 
-	int check = Map[x][y];
+	int check = Map[x][y]; //0¹ø ÇÏ¾á»ö, 1¹ø ÆÄ¶û»ö,2 ºÐÇÒ
 
 	for (int i = x; i < x + size; i++) {
 		for (int j = y; j < y + size; j++) {
-			if (check != Map[i][j]) {
-				Divide(x, y, size / 2);
-				Divide(x, y + size, size / 2);
-				Divide(x + size, y, size / 2);
-				Divide(x + size, y + size, size / 2);
-			}
+			if (check != Map[i][j])
+				check = 2;
 		}
 	}
+
+	if (check == 2) {
+		Divide(x, y, size / 2);
+		Divide(x, y + size, size / 2);
+		Divide(x + size, y, size / 2);
+		Divide(x + size, y + size, size / 2);
+	}
+
 
 	if (check == 0)
 		White++;

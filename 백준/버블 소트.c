@@ -2,11 +2,11 @@
 #include<vector>
 
 using namespace std;
-int Size,answer;
+int Size, answer;
 vector<int> arr;
 
 void Input() {
-	cin >>Size;
+	cin >> Size;
 
 	for (int i = 0; i < Size; i++) {
 		int temp = 0;
@@ -17,11 +17,11 @@ void Input() {
 
 void bubble() {
 	for (int i = 0; i < Size; i++) {
-		for (int j = 0; j < Size-1; j++) {
+		for (int j = 0; j < Size - 1; j++) {
 			if (arr[j + 1] < arr[j]) {
 				int temp = arr[j];
 				arr[j] = arr[j + 1];
-				arr[j + 1] = temp;
+				arr[j + 1] = tmep;
 				answer++;
 			}
 		}
@@ -34,7 +34,10 @@ int main() {
 	cin.tie(NULL);
 	cout.tie(NULL);
 
-	cout << answer<<endl;
+	Input();
+	bubble();
+
+	cout << answer << endl;
 
 	return 0;
 }

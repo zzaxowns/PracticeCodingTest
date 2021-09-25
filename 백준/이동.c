@@ -43,12 +43,16 @@ int find_Max_Sum() {
 }
 
 int main() {
+	int answer = 0;
+
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
 
 	input();
+	answer = find_Max_Sum();
 
+	cout << answer << endl;
 
 	return 0;
 }

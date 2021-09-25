@@ -17,16 +17,22 @@ void GetMap() {
 	}
 }
 void Divide(int x, int y, int size) {
-	bool isWhite = false;
 
+	bool isSame = Map[x][y];
+	bool isBlue = true;
 	for (int i = x; i < x + size; i++) {
 		for (int j = y; j < y + size; j++) {
-			isWhite = Map[i][j] == 0 ? true : false;
+			if (isSame != Map[i][j])
+				isSame = false;
+
+			isBlue = Map[i][j];
 		}
 	}
 
-	if (isWhite) { White++; return; }
-	else if (!isWhite) { Blue++; return; }
+	if (isSame) {
+		if (isBlue) { Blue++; return; }
+		else if (!isBlue) { White++; return; }
+	}
 
 	Divide(x, y, size / 2);
 	Divide(x, y + size, size / 2);

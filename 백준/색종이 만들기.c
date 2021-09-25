@@ -38,7 +38,7 @@ void Divide(int x, int y, int size) {
 
 	if (check == 0)
 		White++;
-	else
+	else if(check == 1)
 		Blue++;
 
 	return;

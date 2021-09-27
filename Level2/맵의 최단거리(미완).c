@@ -1,42 +1,46 @@
 #include<vector>
 using namespace std;
 
-bool isVaild(int x, int y, int max) {
-	return 0 <= x && x < max && 0 <= y && y < max ? true : false;
+int width, height;
+int answer = 1;
+bool find = false;
+bool isVaild(int x, int y) {
+	if (x >= 0 && x < width && y >= 0 && y < height) {
+		return true;
+	}
+
+	return false;
 }
 
-int dfs(int x, int y, vector<vector<int>> maps, int answer) {
+void dfs(int x, int y, vector<vector<int> > maps) {
+	if (x == width - 1 && y == height - 1) {
+		find = true;
+		return;
+	}
+	answer++;
+
 	maps[x][y] = 0;
 
-	if (x == maps.size() - 1 && y == maps.size() - 1) {
-		return answer;
+	if (maps[x][y + 1] && isVaild(x, y + 1)) {
+		dfs(x, y + 1, maps);
 	}
-
-	if (maps[x][y + 1] == 1 && isVaild(x, y + 1, maps.size())) {
-		dfs(x, y + 1, maps, answer);
-		answer++;
+	else if (maps[x + 1][y] && isVaild(x + 1, y)) {
+		dfs(x + 1, y, maps);
 	}
-	if (maps[x + 1][y] == 1 && isVaild(x + 1, y, maps.size())) {
-		dfs(x + 1, y, maps, answer);
-		answer++;
+	else if (maps[x][y - 1] && isVaild(x, y - 1)) {
+		dfs(x, y - 1, maps);
 	}
-	if (maps[x][y - 1] == 1 && isVaild(x, y - 1, maps.size())) {
-		dfs(x, y - 1, maps, answer);
-		answer++;
+	else if (maps[x - 1][y] && isVaild(x - 1, y)) {
+		dfs(x - 1, y, maps);
 	}
-	if (maps[x - 1][y] == 1 && isVaild(x - 1, y, maps.size())) {
-		dfs(x - 1, y, maps, answer);
-		answer++;
-	}
-
-	return -1;
 }
 
 int solution(vector<vector<int> > maps)
 {
-	int answer = 0;
+	width = maps[0].size();
+	height = maps.size();
 
-	answer = dfs(0, 0, maps, answer);
+	dfs(0, 0, maps);
 
-	return answer;
+	return find == true ? answer : -1;
 }

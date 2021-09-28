@@ -1,42 +1,56 @@
 #include<vector>
+#include<queue>
+
 using namespace std;
 
-bool isVaild(int x, int y, int max) {
-	return 0 <= x && x < max && 0 <= y && y < max ? true : false;
-}
+int width, height;
 
-int dfs(int x, int y, vector<vector<int>> maps, int answer) {
-	maps[x][y] = 0;
+struct Pos {
+	int x;
+	int y;
+	int dist;
+};
 
-	if (x == maps.size() - 1 && y == maps.size() - 1) {
-		return answer;
-	}
+bool isVaild(int x, int y) {
+	if (x >= 0 && x < width && y >= 0 && y < height)
+		return true;
 
-	if (maps[x][y + 1] == 1 && isVaild(x, y + 1, maps.size())) {
-		dfs(x, y + 1, maps, answer);
-		answer++;
-	}
-	if (maps[x + 1][y] == 1 && isVaild(x + 1, y, maps.size())) {
-		dfs(x + 1, y, maps, answer);
-		answer++;
-	}
-	if (maps[x][y - 1] == 1 && isVaild(x, y - 1, maps.size())) {
-		dfs(x, y - 1, maps, answer);
-		answer++;
-	}
-	if (maps[x - 1][y] == 1 && isVaild(x - 1, y, maps.size())) {
-		dfs(x - 1, y, maps, answer);
-		answer++;
-	}
-
-	return -1;
+	return false;
 }
 
 int solution(vector<vector<int> > maps)
 {
 	int answer = 0;
+	width = maps[0].size();
+	height = maps.size();
 
-	answer = dfs(0, 0, maps, answer);
+	queue<Pos> Info;
+	Info.push({ 0,0,1 });
 
-	return answer;
+	while (!Info.empty()) {
+		Pos temp = Info.front();
+
+		maps[temp.x][temp.y] = 0;
+
+		if (temp.x == width - 1 && temp.y == height - 1) {
+			answer = temp.dist;
+			break;
+		}//≈ª√‚
+
+		if (maps[temp.x + 1][temp.y] && isVaild(temp.x + 1, temp.y))
+			Info.push({ temp.x + 1, temp.y,temp.dist + 1 });
+
+		if (maps[temp.x - 1][temp.y] && isVaild(temp.x - 1, temp.y))
+			Info.push({ temp.x - 1, temp.y,temp.dist + 1 });
+
+		if (maps[temp.x][temp.y + 1] && isVaild(temp.x, temp.y + 1))
+			Info.push({ temp.x, temp.y + 1,temp.dist + 1 });
+
+		if (maps[temp.x][temp.y - 1] && isVaild(temp.x, temp.y - 1))
+			Info.push({ temp.x, temp.y - 1,temp.dist + 1 });
+
+		Info.pop();
+	}
+
+	return answer == 0 ? -1 : answer;
 }

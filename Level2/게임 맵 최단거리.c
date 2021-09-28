@@ -5,18 +5,19 @@ using namespace std;
 
 int width, height;
 
+int dY[4] = { -1, 1, 0, 0 };
+int dX[4] = { 0, 0, -1, 1 };
+
 struct Pos {
 	int x;
 	int y;
 	int dist;
+	Pos(int x, int y, int dist) {
+		this->x = x;
+		this->y = y;
+		this->dist = dist;
+	}
 };
-
-bool isVaild(int x, int y) {
-	if (x >= 0 && x < width && y >= 0 && y < height)
-		return true;
-
-	return false;
-}
 
 int solution(vector<vector<int> > maps)
 {
@@ -26,28 +27,28 @@ int solution(vector<vector<int> > maps)
 
 	queue<Pos> Info;
 	Info.push({ 0,0,1 });
+	maps[0][0] = 0;
 
 	while (!Info.empty()) {
 		Pos temp = Info.front();
-
-		maps[temp.x][temp.y] = 0;
 
 		if (temp.x == width - 1 && temp.y == height - 1) {
 			answer = temp.dist;
 			break;
 		}//≈ª√‚
 
-		if (maps[temp.x + 1][temp.y] && isVaild(temp.x + 1, temp.y))
-			Info.push({ temp.x + 1, temp.y,temp.dist + 1 });
+		for (int i = 0; i < 4; i++) {
+			int dx = temp.x + dX[i];
+			int dy = temp.y + dY[i];
 
-		if (maps[temp.x - 1][temp.y] && isVaild(temp.x - 1, temp.y))
-			Info.push({ temp.x - 1, temp.y,temp.dist + 1 });
+			if (dx < 0 || dx >= width || dy < 0 || dy >= height)
+				continue;
 
-		if (maps[temp.x][temp.y + 1] && isVaild(temp.x, temp.y + 1))
-			Info.push({ temp.x, temp.y + 1,temp.dist + 1 });
-
-		if (maps[temp.x][temp.y - 1] && isVaild(temp.x, temp.y - 1))
-			Info.push({ temp.x, temp.y - 1,temp.dist + 1 });
+			if (maps[dx][dy] == 1) {
+				Info.push({ dx, dy, temp.dist + 1 });
+				maps[dx][dy] = 0;
+			}
+		}
 
 		Info.pop();
 	}

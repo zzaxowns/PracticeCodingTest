@@ -12,18 +12,13 @@ struct Pos {
 	int x;
 	int y;
 	int dist;
-	Pos(int x, int y, int dist) {
-		this->x = x;
-		this->y = y;
-		this->dist = dist;
-	}
 };
 
 int solution(vector<vector<int> > maps)
 {
 	int answer = 0;
-	width = maps[0].size();
-	height = maps.size();
+	width = maps.size();
+	height = maps[0].size();
 
 	queue<Pos> Info;
 	Info.push({ 0,0,1 });
@@ -35,7 +30,7 @@ int solution(vector<vector<int> > maps)
 		if (temp.x == width - 1 && temp.y == height - 1) {
 			answer = temp.dist;
 			break;
-		}//≈ª√‚
+		}
 
 		for (int i = 0; i < 4; i++) {
 			int dx = temp.x + dX[i];

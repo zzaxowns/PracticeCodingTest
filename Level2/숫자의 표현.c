@@ -6,7 +6,6 @@ using namespace std;
 int solution(int n) {
 	int answer = 0;
 
-<<<<<<< HEAD
 	answer++;
 
 	for (int i = n / 2 + 1; i > 0; i--) {
@@ -20,9 +19,6 @@ int solution(int n) {
 
 		if (sum == n) { answer++; }
 	}
-=======
-
->>>>>>> b08bd1abd612a0d9fa4624cc494d8d28f786ffb7
 
 	return answer;
 }

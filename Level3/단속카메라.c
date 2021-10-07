@@ -1,38 +1,26 @@
-#include <iostream>
 #include <string>
 #include <vector>
 #include <algorithm>
-#include <stack>
+
 using namespace std;
 
 int solution(vector<vector<int>> routes) {
-	int answer = 0;
-	stack<pair<int, int>> s;
+	int answer = 1;
+	int current = 0;
 
-	sort(routes.begin(), routes.end(), greater());
+	sort(routes.begin(), routes.end());
+	current = routes[0][1];
 
-	for (int i = 0; i < routes.size(); i++) {
-		s.push({ routes[i][0],routes[i][1] });
-		cout << routes[i][0] << " " << routes[i][1] << endl;
-	}
-
-
-
-	while (!s.empty()) {
-		pair<int, int> temp = s.top();
-		s.pop();
-
-		cout << temp.first << " " << temp.second << endl;
-
-		if (temp.second > s.top().first) {
-			pair<int, int> newTemp = { temp.first,s.top().second };
-			s.pop();
-			s.push(newTemp);
+	for (auto nums : routes) {
+		if (current < nums[0]) {
+			answer++;
+			current = nums[1];
 			continue;
 		}
 
-		s.pop();
-		answer++;
+		if (current >= nums[1])
+			current = nums[1];
+
 	}
 
 	return answer;

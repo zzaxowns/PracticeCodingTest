@@ -17,8 +17,6 @@ void dijkstra(int start) {
 		int distance = -pq.top().first;
 		int now = pq.top().second;
 
-		if (dist[now] < distance) continue;
-
 		for (int i = 0; i < graphs[now].size(); i++) {
 			int cost = distance + graphs[now][i].second;
 
@@ -27,7 +25,6 @@ void dijkstra(int start) {
 				pq.push(make_pair(-cost, graphs[now][i].first));
 			}
 		}
-
 		pq.pop();
 	}
 
@@ -38,6 +35,7 @@ int solution(int N, vector<vector<int> > road, int K) {
 
 	for (int i = 0; i < road.size(); i++) { // 도착지, 가중치
 		graphs[road[i][0]].push_back(make_pair(road[i][1], road[i][2]));
+		graphs[road[i][1]].push_back(make_pair(road[i][0], road[i][2]));
 	}
 
 	for (int i = 0; i < 51; i++) { dist[i] = 999999; }
@@ -45,7 +43,8 @@ int solution(int N, vector<vector<int> > road, int K) {
 	dijkstra(1);
 
 	for (int i = 0; i <= N; i++) {
-		cout << dist[i] << " ";
+		if (dist[i] <= K)
+			answer++;
 	}
 
 	return answer;

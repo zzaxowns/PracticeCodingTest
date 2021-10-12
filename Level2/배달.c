@@ -17,6 +17,8 @@ void dijkstra(int start) {
 		int distance = -pq.top().first;
 		int now = pq.top().second;
 
+		pq.pop();
+
 		for (int i = 0; i < graphs[now].size(); i++) {
 			int cost = distance + graphs[now][i].second;
 
@@ -25,7 +27,7 @@ void dijkstra(int start) {
 				pq.push(make_pair(-cost, graphs[now][i].first));
 			}
 		}
-		pq.pop();
+
 	}
 
 }

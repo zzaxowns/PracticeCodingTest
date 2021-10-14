@@ -1,14 +1,16 @@
 #include <string>
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
 vector<int> solution(int brown, int yellow) {
 	vector<int> answer;
-	int len = (brown - 4) / 2;
+	int len = brown / 2;
+
 
 	for (int i = len; i > 0; i--) {
-		bool temp = (len - i) * i == yellow ? true : false;
+		bool temp = (len - i - 2) * (i - 2) == yellow ? true : false;
 
 		if (temp) {
 			answer.push_back(i);

@@ -1,19 +1,52 @@
-#include <string>
-#include <vector>
+#include<iostream>
 
 using namespace std;
 
-int solution(vector<vector<int>> triangle) {
-	int answer = 0;
+void making_Star(int num) {
 
-	for (int i = triangle.size() - 1; i >= 0; i--) {
-		for (int j = 0; j < triangle[i].size() - 1; j++) {
-			int num = triangle[i][j] > triangle[i][j + 1] ? triangle[i][j] : triangle[i][j + 1];
-			triangle[i - 1][j] += num;
+	cout << "왼쪽에 붙은 친구" << endl;
+
+	for (int i = 0; i < num; i++) {
+		for (int j = 0; j <= i; j++) {
+			cout << '*';
 		}
+		cout << endl;
 	}
 
-	answer = triangle[0][0];
+	cout << "오른쪽에 붙은 친구" << endl;
 
-	return answer;
+	for (int i = 0; i < num; i++) {
+		for (int j = 0; j < num; j++) {
+			if (num - 1 - i > j) {
+				cout << " ";
+			}
+			else {
+				cout << '*';
+			}
+		}
+		cout << endl;
+	}
+
+	cout << "가운대부터 만들어지는 친구" << endl;
+
+	for (int i = 0; i < num; i++) {
+		if (i & 1 == 1) continue;
+		for (int j = 0; j < i; j++) {
+			if ((num - i) / 2 > j) {
+				cout << " ";
+			}
+			else {
+				cout << "*";
+			}
+		}
+		cout << endl;
+	}
+
+}
+
+int main() {
+
+	making_Star(5);
+
+	return 0;
 }

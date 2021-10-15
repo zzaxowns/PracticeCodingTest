@@ -42,6 +42,22 @@ void making_Star(int num) {
 		cout << endl;
 	}
 
+
+	cout << "¿ª»ï°¢Çü" << endl;
+
+	for (int i = num; i > 0; i--) {
+		if (!(i & 1 == 1)) continue;
+
+		for (int j = 0; j < (num - i) / 2; j++) {
+			cout << " ";
+		}
+
+		for (int j = 0; j < i; j++) {
+			cout << "*";
+		}
+
+		cout << endl;
+	}
 }
 
 int main() {

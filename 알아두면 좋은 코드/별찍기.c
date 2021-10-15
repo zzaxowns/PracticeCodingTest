@@ -31,13 +31,13 @@ void making_Star(int num) {
 
 	for (int i = 0; i < num; i++) {
 		if (i & 1 == 1) continue;
-		for (int j = 0; j < i; j++) {
-			if ((num - i) / 2 > j) {
-				cout << " ";
-			}
-			else {
-				cout << "*";
-			}
+
+		for (int j = 0; j < (num - i) / 2; j++) {
+			cout << " ";
+		}
+
+		for (int j = 0; j <= i; j++) {
+			cout << "*";
 		}
 		cout << endl;
 	}
@@ -46,7 +46,7 @@ void making_Star(int num) {
 
 int main() {
 
-	making_Star(5);
+	making_Star(9);
 
 	return 0;
 }

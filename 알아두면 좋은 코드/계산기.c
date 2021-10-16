@@ -4,11 +4,27 @@
 
 using namespace std;
 
-void carculator(int n1, int n2, char op) {
+int carculator(int n1, int n2, char op) {
 	int num = 0;
 
+	switch(op) {
+		case '/':
+			if(n2 != 0)
+				num = n1 / n2;
+			break;
+		case '*':
+			num = n1 * n2;
+			break;
+		case '+':
+			num = n1 + n2;
+			break;
+		case '-':
+			num = n1 - n2;
+			break;
+		default:
+	}
 
-
+	return num;
 }
 
 void Input(stack<int> s) {

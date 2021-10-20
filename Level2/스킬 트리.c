@@ -9,10 +9,10 @@ int solution(string skill, vector<string> skill_trees) {
 	int answer = 0;
 	unordered_map<char, int> table;
 
-	for (int i = 41; i < 91; i++) { table[i] = 0; }
+	for (int i = 41; i <= 91; i++) { table[i] = 0; }
 
 	int size = skill.size();
-	for (int i = 0; i < size; i++) { table[skill[i]] += i + 1; }
+	for (int i = 0; i < size; i++) { table[skill[i]] += 1; }
 
 	size = skill_trees.size();
 	for (int i = 0; i < size; i++) {
@@ -20,13 +20,20 @@ int solution(string skill, vector<string> skill_trees) {
 		string str = "";
 
 		for (int j = 0; j < skill_Len; j++) {
-			int temp = table[skill_trees[i][j]];
-
-			if (temp != 0)
+			if (table[skill_trees[i][j]])
 				str += skill_trees[i][j];
 		}
 
-		if (strncmp(str.c_str(), skill.c_str(), str.length()))
+		bool flag = true;
+
+		for (int j = 0; j < str.size(); j++) {
+			if (str[j] != skill[j]) {
+				flag = false;
+				break;
+			}
+		}
+
+		if (flag)
 			answer++;
 	}
 

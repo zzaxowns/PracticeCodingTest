@@ -1,7 +1,7 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
-#include <iostream>
+#include <cstring>
 
 using namespace std;
 
@@ -26,10 +26,8 @@ int solution(string skill, vector<string> skill_trees) {
 				str += skill_trees[i][j];
 		}
 
-		if (str == skill) {
-			cout << "str " << str << " skill " << skill << endl;
+		if (strncmp(str.c_str(), skill.c_str(), str.length()))
 			answer++;
-		}
 	}
 
 	return answer;

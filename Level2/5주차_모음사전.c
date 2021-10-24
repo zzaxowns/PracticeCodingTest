@@ -1,13 +1,22 @@
 #include <string>
 #include <vector>
+#include <unordered_map>
 
 using namespace std;
 
+int num = 1;
+vector<string> alpha = { "A", "E","I","O", "U" };
+unordered_map<string, int> book;
+
+void dfs(string str) {
+	if (str.length() > 5) return;
+
+	book[str] = num++;
+	for (auto alphabet : alpha) { dfs(str + alphabet); }
+}
+
 int solution(string word) {
-	int answer = 0;
+	for (auto alphabet : alpha) { dfs(alphabet); }
 
-	// 모든 경우의 수를 더한다 > sort > 찾는다
-	//map이라는 자료구조로 가능한지 생각
-
-	return answer;
+	return book[word];
 }

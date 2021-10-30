@@ -5,19 +5,12 @@
 using namespace std;
 
 int solution(vector<vector<string>> clothes) {
-	int answer = 0;
+	int answer = 1;
 	unordered_map<string, int> h;
 
 	for (auto cloth : clothes) { h[cloth[1]]++; }
 
-	for (auto sample : h) { answer += sample.second; }
+	for (auto sample : h) { answer *= (sample.second + 1); }
 
-
-	if (h.size() != 1) {
-		int combination = 1;
-		for (auto sample : h) { combination *= sample.second; }
-		answer += combination;
-	}
-
-	return answer;
+	return answer - 1;
 }

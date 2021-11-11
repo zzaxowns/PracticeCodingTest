@@ -1,39 +1,32 @@
 #include <string>
 #include <vector>
 #include <stack>
-
 using namespace std;
 
 int solution(vector<vector<int>> board, vector<int> moves) {
 	int answer = 0;
-	vector<int> check(1, 0);
-	stack<int> s[board.size()];
+	stack<int> result;
+	int len = moves.size();
+	int size = board.size();
 
-	for (int i = board.size() - 1; i >= 0; i--) {
-		for (int j = 0; j < board.size(); j++) {
-			if (board[j][i] != 0) {
-				s[j].push(board[j][i]);
+	result.push(0);
+
+	for (int i = 0; i < len; i++) {
+		int line = moves[i] - 1;
+
+		for (int j = 0; j < size; j++) {
+			if (board[j][line] != 0) {
+				if (board[j][line] == result.top()) {
+					result.pop();
+					answer += 2;
+				}
+				else {
+					result.push(board[j][line]);
+					board[j][line] = 0;
+				}
+				break;
 			}
 		}
 	}
-
-	for (int i = 0; i < moves.size(); i++) {
-		if (!s[moves[i] - 1].empty()) {
-			if (check.back() == s[moves[i] - 1].top()) {
-				s[moves[i] - 1].pop();
-				check.pop_back();
-				answer += 2;
-			}
-			else {
-				check.push_back(s[moves[i] - 1].top());
-				s[moves[i] - 1].pop();
-			}
-		}
-	}
-
-
-
-
-
 	return answer;
 }

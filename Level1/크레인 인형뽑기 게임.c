@@ -14,7 +14,7 @@ int solution(vector<vector<int>> board, vector<int> moves) {
 	for (int i = 0; i < len; i++) {
 		int line = moves[i] - 1;
 
-		for (int j = 0; j < size; j++) {
+		for (int j = 0; j < size; j++) { // 크레인이 뽑는 경우
 			if (board[j][line] != 0) {
 				if (board[j][line] == result.top()) {
 					result.pop();
@@ -22,8 +22,8 @@ int solution(vector<vector<int>> board, vector<int> moves) {
 				}
 				else {
 					result.push(board[j][line]);
-					board[j][line] = 0;
 				}
+				board[j][line] = 0;
 				break;
 			}
 		}

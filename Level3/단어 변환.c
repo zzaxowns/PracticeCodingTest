@@ -1,19 +1,28 @@
 #include <string>
 #include <vector>
+#include <queue>
 
 using namespace std;
 
-int solution(vector<vector<int>> triangle) {
-	int answer = 0;
+int check_different(string str1, string str2, int len) { // 몇개가 다른지 체크
+	int temp = 0;
 
-	for (int i = triangle.size() - 1; i >= 0; i--) {
-		for (int j = 0; j < triangle[i].size() - 1; j++) {
-			int num = triangle[i][j] > triangle[i][j + 1] ? triangle[i][j] : triangle[i][j + 1];
-			triangle[i - 1][j] += num;
-		}
+	for (int i = 0; i < len; i++) {
+		if (str1[i] != str2[i])
+			temp++;
 	}
 
-	answer = triangle[0][0];
+	return temp;
+}
+
+int solution(string begin, string target, vector<string> words) {
+	int answer = 0;
+	int len = begin.size();
+	queue<pair<string, int>> table;
+	table.push({ begin,0 });
+
+
+
 
 	return answer;
 }

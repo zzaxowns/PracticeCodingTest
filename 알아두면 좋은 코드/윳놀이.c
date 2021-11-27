@@ -30,33 +30,30 @@ int main() {
 
 		for (auto num : input_arr) { //{4,4,2,4,-1,-1}
 
-			if (!table[current].empty() && current != current_Table) { // 새로운 테이블로 들어갈 때 
-				current_Table = current;
-				cur_Index = 0;
-			}
-
 			cur_Index += num;
 
-			if (num < 0) {
+			if (cur_Index < 0) {
 				pair<int, int> temp = recode.top();
 				recode.pop();
 				current_Table = temp.first;
 				cur_Index = temp.second - 1;
+				current = table[current_Table][cur_Index];
 			}
 			else {
-				recode.push({ current_Table,cur_Index });
+				current = table[current_Table][cur_Index];
 			}
 
-			current = table[current_Table][cur_Index];
-			//cout << "테이블: " << current_Table << " 인덱스: " << cur_Index << " 위치: " << current << endl;
+			if (!table[current].empty() && current_Table != current) {
+				recode.push({ current_Table, cur_Index });
+				current_Table = current;
+				cur_Index = 0;
+			}
 
 			if (current == 0)
 				break;
 
 		}
 		cout << current << endl;
-
-		//cout << "==================" << endl;
 	}
 
 	return 0;

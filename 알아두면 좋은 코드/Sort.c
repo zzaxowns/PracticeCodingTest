@@ -41,6 +41,34 @@ using namespace std;
 //	}
 //}
 
+// Äü ¼ÒÆ®
+//void quickSort(int a[], int start, int end) {
+//	int pIndex;
+//
+//	if (start >= end)
+//		return;
+//	else {
+//		pIndex = partition(a, start, end);
+//		quickSort(a, start, pIndex - 1);
+//		quickSort(a, pIndex + 1, end);
+//	}
+//}
+//
+//int partition(int a[], int start, int end) {
+//	int pivot, pIndex, i;
+//
+//	pivot = a[end];
+//	pIndex = start;
+//	for (i = start; i < end; i++)
+//		if (a[i] < pivot) {
+//			swap(&a[i], &a[pIndex]);
+//			pIndex++;
+//		}
+//	swap(&a[pIndex], &a[end]);
+//
+//	return pIndex;
+//}
+
 int main() {
 	
 

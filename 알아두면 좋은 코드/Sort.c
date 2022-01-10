@@ -12,6 +12,22 @@ void bubbleSort(int a[], int n) {
 	return;
 }
 
+void SelectionSort(int a[], int n) {
+	int i, j;
+	int minIndex;
+
+	for (i = 0; i < n - 1; i++) {
+		minIndex = i;
+		for (j = i + 1; j < n; j++) {
+
+			if (a[j] < a[minIndex])
+				minIndex = j;
+		}
+
+		if (minIndex != i)
+			swap(&a[minIndex], &a[i]);
+	}
+}
 
 int main() {
 	

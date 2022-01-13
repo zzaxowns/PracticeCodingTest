@@ -110,6 +110,56 @@ using namespace std;
 //	return item;
 //}
 
+// 병합 정렬
+//void Merge(int list[], int left, int mid, int right) {
+//	int i = left;
+//	int j = mid + 1;
+//	int k = left;
+//
+//	while (i <= mid && j <= right) {
+//		if (list[i] <= list[j]) {
+//			sorted[k] = list[i];
+//			i++;
+//		}
+//		else {
+//			sorted[k] = list[j];
+//			j++
+//		}
+//		k++;
+//	}
+//
+//	if (i > mid) {
+//		while (j <= right) {
+//			sorted[k] = list[j];
+//			j++;
+//		}
+//	}
+//	else if (j > right) {
+//		while (i <= mid) {
+//			sorted[k] = list[i];
+//			i++;
+//		}
+//	}
+//	k++;
+//	for (int x = left; x <= right; x++) {
+//		list[x] = sorted[x];
+//	}
+//
+//	return;
+//}
+//
+//void Merge_Sort(int list[], int left, int right) {
+//	int mid = (left + right) / 2;
+//
+//	if (left < right) {
+//		Merge_Sort(list, left, mid);
+//		Merge_Sort(list, mid + 1, right);
+//		Merge(list, left, mid, right);
+//	}
+//
+//	return;
+//}
+
 
 
 int main() {

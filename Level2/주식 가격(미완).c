@@ -28,3 +28,25 @@ vector<int> solution(vector<int> prices) {
 	return answer;
 }
 //문제가 너무 애매
+
+#include <string>
+#include <vector>
+#include <stack>
+
+using namespace std;
+
+vector<int> solution(vector<int> prices) {
+	vector<int> answer;
+	stack<int> s;
+
+	answer.push_front(0);
+
+	int len = prices.size() - 1;
+
+	for (int i = 0; i < len; i++) {
+
+
+	}
+
+	return answer;
+}
